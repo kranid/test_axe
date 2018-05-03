@@ -1,0 +1,21 @@
+{
+  "name": "test_axe",
+  "version": "1.0.0",
+  "description": "first axe test",
+  "scripts": {
+    "postinstall": "./node_modules/.bin/webdriver-manager update",
+    "test": "./node_modules/.bin/protractor e2e/conf.remote.js"
+  },
+  "author": "Konstantin Galiakhmetov",
+  "license": "ISC",
+  "devDependencies": {
+    "axe": "^0.3.7",
+    "axe-webdriverjs": "^2.0.0",
+    "jasmine": "^3.1.0",
+    "jasmine-data-provider": "^2.2.0",
+    "moment": "^2.22.1",
+    "msexcel-builder": "0.0.2",
+    "protractor": "^5.3.1"
+  },
+  "dependencies": {}
+}
