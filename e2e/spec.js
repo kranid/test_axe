@@ -45,12 +45,13 @@ describe('my first test', () => {
         });
     });
 
-    afterAll(() => {
+    afterAll((done) => {
         workbook.save(function(err){
         if (err)
             throw err;
         else
             console.log('congratulations, your workbook created');
+            done();
         });
     });
 
@@ -58,9 +59,10 @@ describe('my first test', () => {
         it("shold be no", async () => {
 model_number =id;
             let current_url=browser.baseUrl+id;
+            console.log(current_url);
             await browser.get(current_url);
             const nextButton =element(by.buttonText('Next'));
-            const continueButton =element(by.buttonText('Continue'));
+            const continueButtonList =element.all(by.buttonText('Continue'));
             while (true) {
                 let displayed_slide_number =await element(by.id('info')).getText();
                 let result =await AxeBuilder(browser).analyze();
@@ -72,9 +74,11 @@ model_number =id;
                 }
                 else {
                     nextButton.click();
-                    if (await continueButton.isDisplayed()) {
-                        continueButton.click();
-                    }
+                    continueButtonList.each(async (continueButton, index) => {
+                        if (await continueButton.isDisplayed()) {
+                            continueButton.click();
+                        }
+                    });
                 }
             }
         });
